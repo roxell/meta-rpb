@@ -23,9 +23,13 @@ do_install() {
     sed -i '/^make/d' ${D}${INSTALL_PATH}/run_kselftest.sh
 }
 
-FILES_${PN} = "${INSTALL_PATH}"
+FILES_${PN} = "${INSTALL_PATH} ${INSTALL_PATH}/bpf/*.o"
 FILES_${PN}-dbg = "${INSTALL_PATH}/*/.debug"
 
 RDEPENDS_${PN} = "bash bc ethtool fuse-utils iproute2 glibc-utils ncurses sudo"
 
 INSANE_SKIP_${PN} = "already-stripped"
+# Ignore the QA error because kselftests/bpf/ requires object files
+# ERROR message:
+# ERROR: kselftests-mainline-4.14-r0 do_package_qa: QA Issue: Architecture did not match (Unknown (0), expected AArch64) on /work/hikey-linaro-linux/kselftests-mainline/4.14-r0/packages-split/kselftests-mainline/opt/kselftests/mainline/bpf/test_tcp_estats.o
+ERROR_QA_remove = "arch"
