@@ -21,3 +21,4 @@ S = "${WORKDIR}/git"
 export INSTALL_PATH = "/opt/kselftests/next"
 
 require kselftests-common.inc
+RDEPENDS_${PN}_append = " python3-core "
