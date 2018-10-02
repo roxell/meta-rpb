@@ -8,7 +8,7 @@ SRC_URI = "git://github.com/Algodev-github/S.git;protocol=https;branch=master"
 S = "${WORKDIR}/git"
 
 DEPENDS = "rsync"
-RDEPENDS_${PN} = "libaio-dev bash gcc fio"
+RDEPENDS_${PN} = "libaio-dev bash gcc fio gawk g++ libaio sysstat bc coreutils"
 
 do_install() {
     mkdir -p ${D}/opt/
